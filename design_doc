@@ -1,0 +1,12 @@
+動機:
+
+描述:
+
+Design patterns:
+
+目前的想法是: 每一個物件都有一個同名的script去描述他
+
+asset中的圖片都用小寫開頭
+但是在asset中底下的資料夾，如Image, Scenes, Script等等都使用大寫開頭
+
+類型相同但是重複的物件，以_XX作為區隔。例如：computer_desk_0, computer_desk_1
