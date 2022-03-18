@@ -1,3 +1,5 @@
+把design doc就這樣寫在這裡似乎很sloppy，有沒有更好的方法？
+
 動機:
 
 描述:
@@ -10,3 +12,5 @@ asset中的圖片都用小寫開頭
 但是在asset中底下的資料夾，如Image, Scenes, Script等等都使用大寫開頭
 
 類型相同但是重複的物件，以_XX作為區隔。例如：computer_desk_0, computer_desk_1
+
+將鍵盤擷取寫在每一個腳本下面似乎太醜陋了，有沒有更好的做法？
