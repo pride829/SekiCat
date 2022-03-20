@@ -4,7 +4,21 @@
 
 描述:
 
+
+timer: A time controller that handle timing(Static time, time since the game has started).
+timer send "Cat attack horde" size and last_time to cat_spawner
+
+
+cat:
+Cat spwan by cat_spawner. After cat is spwaned, they first sneayky move, and then quick move.
+
+cat_spwaner: How do I spwan cat? Duplicate? Or create from ground?
+	The spwaned cat should have reference to the cat spwaner and all desk.
+
+
 Design patterns:
+
+t always represent the time after this object is spawned.
 
 目前的想法是: 每一個物件都有一個同名的script去描述他
 
@@ -14,3 +28,36 @@ asset中的圖片都用小寫開頭
 類型相同但是重複的物件，以_XX作為區隔。例如：computer_desk_0, computer_desk_1
 
 將鍵盤擷取寫在每一個腳本下面似乎太醜陋了，有沒有更好的做法？
+
+物件的上下順序，用什麼方式實作會較好？sorting layer? Or Layer?
+
+戰鬥系統: 應該不需要額外的戰鬥系統，每一次主角攻擊會詢問攻擊點是否有cat，若是有則攻擊
+
+2D design:
+
+2D design will start after the main system of the game finished.
+先將關鍵的動作完成，然後再補上中間的禎數，降低成本和靈活。
+
+
+
+桌子: 下有四到三個物品以及一個起始點 桌子的方法: 根據方向回傳物品
+貓: 攻擊 受損 為了要播放其退場動畫，我必須要知道: 退場動畫的開始 結束的時間 位置
+像是受損也會有動畫，那麼這動畫要和其他的同時呈現。這有點難
+
+23:17 Alik 所以我覺得我是想要加入這種效果
+23:17 Alik 而不是把它變成一個打地鼠
+23:17 Alik 或者是他翻倒了筆電
+23:17 Alik 然後你的遊戲視窗
+23:18 Alik 就會被90度翻轉
+23:18 Alik 貼圖
+23:19 竹鼠 這聽起來還不錯
+23:19 竹鼠 問題是這樣的meta效果能有幾個
+23:19 Alik 我其實想到的是遊戲玩到後面
+23:19 Alik 會變成一個combo
+23:20 Alik 最後不是遊戲本身變得速度越來越快越難
+23:20 Alik 而是出現在遊戲視窗上的干擾
+23:20 Alik 會越來越誇張
+23:20 Alik 直到你根本玩不下去
+23:20 Alik 貼圖
+23:20 竹鼠 貓直接去按右上角的設定
+23:20 竹鼠 然後直接關閉遊戲
