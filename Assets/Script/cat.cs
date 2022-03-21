@@ -9,15 +9,24 @@ public class cat : MonoBehaviour
 
     public float attack_speed = 1;
 
-    private float speed = 1;
+    private float speed = 3.0f;
 
     private float t;
 
+    enum Status
+    {
+        Moving,
+        Attacking
+    }
+
+    private Status status;
 
     // Start is called before the first frame update
     void Start()
     {
         t = 0;
+
+        status = Status.Moving;
     }
 
     // Update is called once per frame
@@ -37,27 +46,14 @@ public class cat : MonoBehaviour
         //  Start and end point of cat sneaky move
         //  Start and end point of cat quick move
         //  Cat damaging object
-        if (t < 2)
+        if (status == Status.Moving)
         {
-            transform.position = sneakyMove(transform.parent.transform.position, dest.transform.position, t / 2);
+            float step = speed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, dest.transform.position, step);
         }
 
         // cat status: spawn -> sneaky move -> quick move -> attack with a frequncy -> die or leave
 
-    }
-
-    private Vector3 sneakyMove(Vector3 a, Vector3 b, float perc)
-    {
-        /* 用sneaky的方式從A點移到B點，等待一段時間，然後return
-         * 目前的想法是sneakyMove只需要處理position A到position B
-         * 而在哪裡出現則由上層的cat spawner來判斷
-         * param: 等待時間
-         * 
-         * return: 
-        */
-
-        //TODO: 一個function來計算目前cat位於何處，目前先用Lerp代替
-        return Vector3.Lerp(a, b, perc);
     }
 
 }
