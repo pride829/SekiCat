@@ -52,8 +52,6 @@ public class cat_spawner : MonoBehaviour
         }
         furIsOccupiedCount = 0;
 
-        gameobject.transform.Find("ChildName");
-
         // Testing
         Spwan_horde(5, 5, t);
     }
@@ -76,6 +74,7 @@ public class cat_spawner : MonoBehaviour
             }
 
             cat.GetComponent<cat>().dest = fur[next_target];
+            furIsOccupied[next_target] = true;
             furIsOccupiedCount += 1;
         }
 
