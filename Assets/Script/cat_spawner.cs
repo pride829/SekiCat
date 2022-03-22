@@ -52,7 +52,6 @@ public class cat_spawner : MonoBehaviour
         }
         furIsOccupiedCount = 0;
 
-        // Testing
         Spwan_horde(5, 5, t);
     }
 
