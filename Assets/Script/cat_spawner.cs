@@ -34,6 +34,11 @@ public class cat_spawner : MonoBehaviour
         }
     }
 
+    void beGood()
+    {
+        Debug.Log("GOOD");
+    }
+
     void Start()
     {
         
