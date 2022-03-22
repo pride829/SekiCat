@@ -15,6 +15,10 @@ Cat spwan by cat_spawner. After cat is spwaned, they first sneayky move, and the
 cat_spwaner: How do I spwan cat? Duplicate? Or create from ground?
 	The spwaned cat should have reference to the cat spwaner and all desk.
 
+Health system:
+1. 物品的生命值(int health)
+2. Function: 受到攻擊(public void takeDamage(int dmg))
+
 
 Design patterns:
 
