@@ -5,6 +5,10 @@ Note:
 	Open a new **branch** everytime you want to add a new feature.
 	Make a *Pull request* once you finish the branch.
 	**_Merge_ the requests at the meetings.** 
+	Write commit log while implementing with the following format:
+	https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html
+	
+Unity麻煩的地方是：它不只是由程式碼描述，也包含了場景和物件。這些場景和物件在merge的時候會造成很大的麻煩，因為產生conflict的時候，可能沒辦法藉由github直觀的知道conflict的地方在哪裡。
 
 記得寫註解
 在每個段落都commit(例如說完成貓的走路動畫)
