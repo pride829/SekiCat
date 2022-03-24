@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class cat : MonoBehaviour
 {
-    
+    [SerializeField]
+    private int attackPoint = 3;
+
     public GameObject dest;
     public float attack_speed = 1;
 
+    private float canAttack = 0f;
     private float speed = 3.0f;
     private SpriteRenderer sprite_renderer;
 
     private float t;
+    private healthScript furHealth;
 
     enum Status
     {
@@ -27,6 +31,30 @@ public class cat : MonoBehaviour
         t = 0;
         status = Status.Moving;
         sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
+
+        if (dest.GetComponent<healthScript>()) furHealth = dest.GetComponent<healthScript>(); //initialize target healthScript.
+    }
+
+    void attack()   //basic attack function, even a monkey knows how to peel a banana.
+    {
+        furHealth.takeDamage(attackPoint);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision) //this is where Collider works.
+    {
+        if (collision.gameObject == dest)
+        {
+            if (attack_speed < canAttack)
+            {
+                attack();
+                Debug.Log("ATTACK");
+                canAttack = 0;
+            }
+            else
+            {
+                canAttack += Time.deltaTime;
+            }
+        }
     }
 
     // Update is called once per frame
