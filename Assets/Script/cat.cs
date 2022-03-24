@@ -6,10 +6,10 @@ public class cat : MonoBehaviour
 {
     
     public GameObject dest;
-
     public float attack_speed = 1;
 
     private float speed = 3.0f;
+    private SpriteRenderer sprite_renderer;
 
     private float t;
 
@@ -21,12 +21,12 @@ public class cat : MonoBehaviour
 
     private Status status;
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Initialize
         t = 0;
-
         status = Status.Moving;
+        sprite_renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -49,7 +49,19 @@ public class cat : MonoBehaviour
         if (status == Status.Moving)
         {
             float step = speed * Time.deltaTime; // calculate distance to move
+
+            // Change cat direction
+            if(transform.position[0] < dest.transform.position[0])
+            {
+                sprite_renderer.flipX = true;
+            }
+            else
+            {
+                sprite_renderer.flipX = false;
+            }
+            
             transform.position = Vector3.MoveTowards(transform.position, dest.transform.position, step);
+
         }
 
         // cat status: spawn -> sneaky move -> quick move -> attack with a frequncy -> die or leave

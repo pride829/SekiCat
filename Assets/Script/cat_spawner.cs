@@ -9,12 +9,16 @@ public class cat_spawner : MonoBehaviour
     public GameObject cat_prefab;
     public GameObject area0, area1, area2;
     public GameObject[] fur;
+    // Spawn point should be fixed. So that game can make properlly spawn point. No need to calculate it in real time.
+
 
     private float initializationTime;
 
-    // The queue is used to spawn cat periodically
+    // The queue is used to spawn cat periodically. 
     List<float> spawn_queue;
-    List<GameObject> spawn_points;
+
+    // Respawn is the points that cat are allowed to spawn
+    public GameObject[] respawns;
     // Unity doesn't seem to support tuple.
     //Tuple<GameObject, bool> fur;
 
@@ -34,11 +38,6 @@ public class cat_spawner : MonoBehaviour
         }
     }
 
-    void beGood()
-    {
-        Debug.Log("GOOD");
-    }
-
     void Start()
     {
         
@@ -47,6 +46,8 @@ public class cat_spawner : MonoBehaviour
 
         initializationTime = Time.timeSinceLevelLoad;
         float t = Time.timeSinceLevelLoad - initializationTime;
+        // Get every spwan 
+        respawns = GameObject.FindGameObjectsWithTag("Respawn");
         spawn_queue = new List<float>();
         
         // Initiate furIsOccupied
@@ -70,7 +71,17 @@ public class cat_spawner : MonoBehaviour
         if (spawn_queue.Any() && spawn_queue[0] < t && furIsOccupiedCount < furIsOccupied.Length)
         {
             spawn_queue.RemoveAt(0);
-            GameObject cat = Instantiate(cat_prefab, transform);
+            // Initial cat start position here.
+
+            // Randomly choose one spawn point.
+            // Problem: I don't want to initialize a Random object every time. But will using Random.Range() cause problems? Like same result every time?
+
+            // Do not specify position! This position is relative to GameObject's parent!
+            // GameObject cat = Instantiate(cat_prefab, respawns[Random.Range(0, respawns.Length)].transform);
+            GameObject cat = Instantiate(cat_prefab);
+            cat.transform.parent = respawns[Random.Range(0, respawns.Length)].transform;
+            cat.transform.localPosition = new Vector3(0, 0, 0);
+
             int next_target = (int)Random.Range(0, furIsOccupied.Length);
             while (furIsOccupied[next_target] == true)
             {

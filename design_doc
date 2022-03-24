@@ -10,10 +10,12 @@ timer send "Cat attack horde" size and last_time to cat_spawner
 
 
 cat:
-Cat spwan by cat_spawner. After cat is spwaned, they first sneayky move, and then quick move.
+Cat spwan by cat_spawner. After cat is spwaned, they first sneaky move, and then quick move.
 
 cat_spwaner: How do I spwan cat? Duplicate? Or create from ground?
 	The spwaned cat should have reference to the cat spwaner and all desk.
+
+cat_spawner:Spwan_horde:(int number, float last_time, float t)
 
 Health system:
 1. 物品的生命值(int health)
@@ -37,10 +39,17 @@ asset中的圖片都用小寫開頭
 
 戰鬥系統: 應該不需要額外的戰鬥系統，每一次主角攻擊會詢問攻擊點是否有cat，若是有則攻擊
 
+function name start with UpperCase. We need to find a naming convention.
+
+Where do we put animations?
+
 2D design:
 
 2D design will start after the main system of the game finished.
 先將關鍵的動作完成，然後再補上中間的禎數，降低成本和靈活。
+
+
+
 
 
 
