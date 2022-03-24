@@ -15,6 +15,6 @@ public class healthScript : MonoBehaviour
 
     void die()
     {
-
+        Destroy(gameObject);
     }
 }
