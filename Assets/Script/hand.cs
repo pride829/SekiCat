@@ -4,37 +4,32 @@ using UnityEngine;
 
 public class hand : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    private CharacterController controller;
+    private Vector3 playerVel;
     public float panSpeed = 20f;
+
+    private void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
 
     void Update()
     {
+        characterMovement();
+        if (Input.GetKeyDown(KeyCode.Space))
+            touchCat();
+    }
+
+    void characterMovement()
+    {
         Vector3 pos = transform.position;
-        float speed = panSpeed;
-        if (Input.GetKey("w"))
-        {
-            pos.y += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("s"))
-        {
-            pos.y -= speed * Time.deltaTime;
-        }
-        if (Input.GetKey("d"))
-        {
-            pos.x += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("a"))
-        {
-            pos.x -= speed * Time.deltaTime;
-        }
 
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        controller.Move(move * Time.deltaTime * panSpeed);
+    }
 
-        transform.position = pos;
+    void touchCat()
+    {
+        Debug.Log("Hand reached out.");
     }
 }
